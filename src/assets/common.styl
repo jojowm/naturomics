@@ -1,0 +1,44 @@
+* {
+  margin 0
+  padding 0
+  box-sizing border-box
+}
+
+darkBlue = #4183c4
+light_grey =#ccc
+
+html, body, #app {
+  height 100%
+}
+
+.clearfix {
+  &:after, &:before {
+    content ''
+    display table
+    height 0
+    clear both
+    visibility hidden
+  }
+}
+
+.rt {
+  float right
+}
+
+.lf {
+  float left
+}
+
+.block-title {
+  font-size 1.3rem
+  font-weight bold
+  font-family 'Times New Roman', Times, serif
+  color darkBlue
+  line-height 1.3rem
+  margin 10px 0
+}
+
+.block-border {
+  border 1px solid light_grey
+  border-radius 10px
+}
