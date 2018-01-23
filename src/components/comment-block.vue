@@ -2,13 +2,35 @@
   <div class="comment-block">
     <p class="block-title">Lastest Comments</p>
     <div class="block-border">
-      <div class="comment-row" v-for="n in 10" :key="n">
-        <span class="c-name">user {{n}}: </span>
-        <span class="c-content">some text some text some text some text some text some text</span>
+      <div class="comment-row" v-for="cItem in comments" :key="cItem.cName">
+        <span class="c-name">{{ cItem.cName }}: </span>
+        <span class="c-content">{{ cItem.cComment }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'comment-block',
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$http.get('/api/comments')
+        .then(({data}) => {
+          this.comments = data
+        })
+    }
+  },
+  data () {
+    return {
+      comments: []
+    }
+  }
+}
+</script>
 
 <style lang="stylus">
   dark_grey = #808080

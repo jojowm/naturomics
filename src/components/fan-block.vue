@@ -2,15 +2,37 @@
   <div class="fan-block">
     <p class="block-title">Fans</p>
     <div class="block-border">
-      <div class="fan-item" v-for="n in 9" :key="n">
+      <div class="fan-item" v-for="fItem in fans" :key="fItem.fName">
         <div class="fan-pic">
           <img src="../../static/user-pic.jpeg" alt="user-pic">
         </div>
-        <span>fan {{n}}</span>
+        <span>{{ fItem.fName }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'fan-block',
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.$http.get('/api/fans')
+        .then(({data}) => {
+          this.fans = data
+        })
+    }
+  },
+  data () {
+    return {
+      fans: []
+    }
+  }
+}
+</script>
 
 <style lang="stylus">
   dark_grey = #808080
