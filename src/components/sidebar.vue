@@ -8,8 +8,8 @@
       </div>
       <!-- 用户简介 -->
       <div class="profile-content">
-        <p class="p-name">Someone</p>
-        <p class="p-bios">Introduce yourself</p>
+        <p class="p-name">{{ profile.pName }}</p>
+        <p class="p-bios">{{ profile.pBios }}</p>
         <div class="contact">
           <i class="fa fa-github fa-lg" aria-hidden="true"></i>
           <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
@@ -27,14 +27,38 @@
     <!-- tags -->
     <p class="block-title">Tags</p>
     <div class="tags-block">
-      <span v-for="n in 7" :key="n">tag {{n}}</span>
+      <span v-for="tag in tags" :key="tag">{{ tag }}</span>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'sidebar'
+    name: 'sidebar',
+    created () {
+      this.fetchData()
+    },
+    methods: {
+      fetchData () {
+        this.$http.get('/api/tags')
+          .then(({data}) => {
+            this.tags = data
+          })
+        this.$http.get('/api/profile')
+          .then(({data}) => {
+            for (const k in data) {
+              // $set是vue实例都有的方法，用于赋值
+              this.$set(this.profile, k, data[k])
+            }
+          })
+      }
+    },
+    data () {
+      return {
+        tags: [],
+        profile: {}
+      }
+    }
   }
 </script>
 
@@ -139,7 +163,6 @@
         &:hover {
           cursor pointer
           line-height 2rem
-          font-size 1.5rem
         }
       }
     }

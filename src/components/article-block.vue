@@ -28,8 +28,8 @@ export default {
   methods: {
     fetchData () {
       this.$http.get('/api/article')
-        .then(({data: pData}) => {
-          this.article = pData
+        .then(({data}) => {
+          this.article = data
         })
     },
     lastPage () {
