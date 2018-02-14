@@ -170,5 +170,17 @@
   "profile": {
     "pName": "Someone",
     "pBios": "Introduce yourself"
+  },
+  "articleDetail": {
+    "title": "懂太多道理，就是过不好这一生——读《认知突围》",
+    "authorName": "Someone",
+    "meta": {
+      "time": "2018.01.06",
+      "wordCount": 945,
+      "reading": 768,
+      "comCount": 96,
+      "likes": 326
+    },
+    "content": "Something"
   }
 }
