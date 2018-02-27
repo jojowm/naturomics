@@ -55,7 +55,7 @@ export default {
       return tmp.slice(this.start, this.count * 10)
     },
     totalPages () {
-      return this.article.length
+      return Math.ceil(this.article.length / 10)
     }
     // currentPage () {
     //   return

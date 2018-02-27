@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="a-container">
     <div class="article-wrap">
       <h1 class="title">{{ articleDetail.title }}</h1>
       <div class="author">
@@ -15,9 +15,15 @@
             <span class="m-block">喜欢 {{ articleDetail.meta ? articleDetail.meta.count.likes : 0 }}</span>
           </div>
         </div>
+        <el-dropdown trigger="click" @command="handleCommand">
+          <i class="el-icon-setting"></i>
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="edit">编辑</el-dropdown-item>
+                <el-dropdown-item command="delete">删除</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
       </div>
-      <div class="article-content">
-      </div>
+      <div class="article-content">{{ articleDetail.content }}</div>
     </div>
   </div>
 </template>
@@ -44,6 +50,31 @@
               this.$set(this.articleDetail, k, data[k])
             }
           })
+      },
+      handleCommand (command) {
+        // 点击删除按钮后的弹框
+        if (command == 'delete') {
+          this.$confirm(
+            '此操作将永久删除该文件, 是否继续?',
+            '提示',
+            {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          ).then(() => {
+            // ajax ==> delete
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });
+        }
       }
     },
     components: {
@@ -53,7 +84,7 @@
 </script>
 
 <style lang="stylus">
-.container {
+.a-container {
   flex 1 0 auto
   display flex
   justify-content space-between
@@ -95,6 +126,12 @@
           font-size 12px
           color #969696
         }
+      }
+      .el-dropdown {
+        font-size 16px
+        float right
+        top: 28px;
+        right: 5px;
       }
     }
     .article-content {
