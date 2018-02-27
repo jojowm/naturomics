@@ -1,5 +1,7 @@
 <template>
-  <div class="p-header"></div>
+  <div class="p-header">
+
+  </div>
 </template>
 
 <style lang="stylus">
