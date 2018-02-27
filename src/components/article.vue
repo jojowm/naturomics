@@ -5,14 +5,14 @@
       <div class="author">
         <round-pic data="../../static/user-pic.jpeg"></round-pic>
         <div class="author-info">
-          <span class="name">{{ articleDetail.authorName }}</span>
+          <span class="name">{{ articleDetail.author }}</span>
           <el-button round><i class="iconfont icon-plus"></i>关注</el-button>
           <div class="article-meta">
-            <span class="m-block">{{ articleDetail.meta.time }}</span>
-            <span class="m-block">字数 {{ articleDetail.meta.wordCount }}</span>
-            <span class="m-block">阅读 {{ articleDetail.meta.reading }}</span>
-            <span class="m-block">评论 {{ articleDetail.meta.comCount }}</span>
-            <span class="m-block">喜欢 {{ articleDetail.meta.likes }}</span>
+            <span class="m-block">{{ articleDetail.meta ? articleDetail.meta.time : 0 }}</span>
+            <span class="m-block">字数 {{ articleDetail.meta ? articleDetail.meta.count.word : 0 }}</span>
+            <span class="m-block">阅读 {{ articleDetail.meta ? articleDetail.meta.count.reading : 0 }}</span>
+            <span class="m-block">评论 {{ articleDetail.meta ? articleDetail.meta.count.comment : 0 }}</span>
+            <span class="m-block">喜欢 {{ articleDetail.meta ? articleDetail.meta.count.likes : 0 }}</span>
           </div>
         </div>
       </div>
@@ -32,12 +32,13 @@
     },
     data () {
       return {
+        id: this.$route.params.id,
         articleDetail: {}
       }
     },
     methods: {
       fetchData () {
-        this.$http.get('/api/articleDetail')
+        this.$http.get(`/api/v2/article/${this.id}`)
           .then(({data}) => {
             for (const k in data) {
               this.$set(this.articleDetail, k, data[k])

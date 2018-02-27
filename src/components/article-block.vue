@@ -2,20 +2,20 @@
   <div class="article-block">
     <p class="block-title">Article</p>
     <div class="block-border">
-      <div class="article-row" v-for="aItem in articles" :key="aItem.aId">
-        <router-link :to="`/article/${aItem.aId}`">
+      <div class="article-row" v-for="aItem in articles" :key="aItem._id">
+        <router-link :to="`/article/${aItem._id}`">
         <!-- 第一步：把id加上
         第二部：因为这个aid实际上是v-for出来的，是个变量，所以这边要改成变量
                这个语法昨天说过的，就是字符串模版，或者叫做字符串拼接
                这个时候鼠标放上去，已经能看到目标URL变化了
         第三步：在定义路由的文件里做点手脚 -->
-          {{ aItem.aTitle }}
+          {{ aItem.title }}
         </router-link>
         <!-- <span>{{ aItem.aTitle }}</span> -->
         <div>
-          <span>评论（{{ aItem.aComments }}）</span>
-          <span>阅读量（{{ aItem.aReading }}）</span>
-          <span>分类：{{ aItem.aClass }}</span>
+          <span>评论（{{ aItem.meta ? aItem.meta.count.comment : 0 }}）</span>
+          <span>阅读量（{{ aItem.meta ? aItem.meta.count.reading : 0 }}）</span>
+          <span>分类：{{ aItem.class.join(',') }}</span>
         </div>
       </div>
       <div class="btn-row">
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     fetchData () {
-      this.$http.get('/api/article')
+      this.$http.get('/api/v2/article/list')
         .then(({data}) => {
           this.article = data
         })
