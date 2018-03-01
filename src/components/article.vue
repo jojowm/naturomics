@@ -53,7 +53,7 @@
       },
       handleCommand (command) {
         // 点击删除按钮后的弹框
-        if (command == 'delete') {
+        if (command === 'delete') {
           this.$confirm(
             '此操作将永久删除该文件, 是否继续?',
             '提示',
@@ -67,13 +67,13 @@
             this.$message({
               type: 'success',
               message: '删除成功!'
-            });
+            })
           }).catch(() => {
             this.$message({
               type: 'info',
               message: '已取消删除'
-            });
-          });
+            })
+          })
         }
       }
     },

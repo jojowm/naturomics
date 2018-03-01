@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/index'
 import article from '@/components/article'
+import newArticle from '@/components/new-article'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       // 这里的id无论是数字还是字符串都可以，但是必须要有:
       name: 'article',
       component: article
+    },
+    {
+      path: '/article/new',
+      name: 'new-article',
+      component: newArticle
     }
   ]
 })
