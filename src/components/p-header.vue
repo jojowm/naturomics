@@ -1,6 +1,12 @@
 <template>
   <div class="p-header">
-     <el-button round class="new-article" @click="newArticle">新建文章</el-button>
+    <router-link to="/article/create">
+    <el-button
+      round
+      class="new-article"
+    >新建文章</el-button>
+    </router-link>
+      <!-- @click="newArticle" -->
   </div>
 </template>
 
@@ -9,7 +15,8 @@
     name: 'p-header',
     methods: {
       newArticle () {
-        // this.$router.push('/article/new')
+        console.log(111)
+        this.$router.push({path: '/article/new'})
       }
     }
   }
