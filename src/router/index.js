@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/index'
 import article from '@/components/article'
-// import newArticle from '@/components/new-article'
+import newArticle from '@/components/new-article'
 
 Vue.use(Router)
 
@@ -20,9 +20,9 @@ export default new Router({
       component: article
     },
     {
-      path: '/article/create',
+      path: '/article_create',
       name: 'new-article',
-      component: article
+      component: newArticle
     }
   ]
 })
