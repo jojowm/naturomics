@@ -85,11 +85,6 @@
 
 <style lang="stylus">
 .a-container {
-  flex 1 0 auto
-  display flex
-  justify-content space-between
-  width 620px
-  margin 0 auto
   .article-wrap {
     width 100%
     padding-top 20px
