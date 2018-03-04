@@ -63,11 +63,27 @@
               type: 'warning'
             }
           ).then(() => {
+            this.$http.post(`/api/v2/article/delete/${this.id}`)
+              .then(({data: {status}}) => {
+                if (status) {
+                  this.$message({
+                    type: 'success',
+                    message: '删除成功!',
+                    // message 弹框关闭时的回调函数
+                    onClose: () => {
+                      // 把当前路由替换成如下路由，用户不可回退查看删除的页面
+                      this.$router.replace('/')
+                    },
+                    duration: 1500
+                  })
+                } else {
+                  this.$message({
+                    type: 'error',
+                    message: '删除不成功!'
+                  })
+                }
+              })
             // ajax ==> delete
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
           }).catch(() => {
             this.$message({
               type: 'info',
