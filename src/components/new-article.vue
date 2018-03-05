@@ -34,6 +34,12 @@
 <script>
 export default {
   name: 'new-article',
+  created () {
+    if (this.$route.params.id) {
+      this.id = this.$route.params.id
+      this.fetchData()
+    }
+  },
   data () {
     return {
       aForm: {
@@ -42,7 +48,8 @@ export default {
         content: ''
       },
       inputVisible: false,
-      inputValue: ''
+      inputValue: '',
+      id: ''
     }
   },
   methods: {
@@ -64,12 +71,25 @@ export default {
       this.inputValue = ''
     },
     submit () {
-      this.$http.post('/api/v2/article/', this.aForm)
+      // 修改文章，提交到后台update地址; 新建文章，提交到／article地址
+      let url = this.id ? `/api/v2/article/update/${this.id}` : '/api/v2/article/'
+      this.$http.post(url, this.aForm)
         // 用到的ajax库为  axios
         // axios 会把返回值包装在 一个对象的data属性中
         // ({data}) 是解构赋值
+
+        // 无论是新建还是修改文章，点击确认提交后，都跳转到详情页面
         .then(({data}) => {
-          this.$router.push(`/article/${data._id}`)
+        //  根据新建文章和修改文章后台返回值不同，用不同方式跳转同一页面
+          this.$router.push(`/article/${data._id || this.id}`)
+        })
+    },
+    fetchData () {
+      this.$http.get(`/api/v2/article/${this.id}`)
+        .then(({data}) => {
+          this.$set(this.aForm, 'title', data.title)
+          this.$set(this.aForm, 'class', data.class)
+          this.$set(this.aForm, 'content', data.content)
         })
     }
   }
