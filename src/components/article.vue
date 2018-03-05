@@ -90,6 +90,8 @@
               message: '已取消删除'
             })
           })
+        } else {
+          this.$router.push({path: `/article_edit/${this.id}`})
         }
       }
     },

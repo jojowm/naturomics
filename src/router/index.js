@@ -23,6 +23,11 @@ export default new Router({
       path: '/article_create',
       name: 'new-article',
       component: newArticle
+    },
+    {
+      path: '/article_edit/:id',
+      name: 'edit-article',
+      component: newArticle
     }
   ]
 })
