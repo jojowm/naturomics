@@ -37,7 +37,7 @@ export default {
     fetchData () {
       this.$http.get('/api/v2/article/list')
         .then(({data}) => {
-          this.article = data
+          this.article = data.data
         })
     },
     lastPage () {
