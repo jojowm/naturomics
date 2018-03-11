@@ -45,9 +45,9 @@
     methods: {
       fetchData () {
         this.$http.get(`/api/v2/article/${this.id}`)
-          .then(({data}) => {
-            for (const k in data) {
-              this.$set(this.articleDetail, k, data[k])
+          .then((res) => {
+            for (const k in res.data.data) {
+              this.$set(this.articleDetail, k, res.data.data[k])
             }
           })
       },

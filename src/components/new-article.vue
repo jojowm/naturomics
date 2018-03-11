@@ -79,9 +79,9 @@ export default {
         // ({data}) 是解构赋值
 
         // 无论是新建还是修改文章，点击确认提交后，都跳转到详情页面
-        .then(({data}) => {
+        .then((res) => {
         //  根据新建文章和修改文章后台返回值不同，用不同方式跳转同一页面
-          this.$router.push(`/article/${data._id || this.id}`)
+          this.$router.push(`/article/${res.data.data._id || this.id}`)
         })
     },
     fetchData () {
