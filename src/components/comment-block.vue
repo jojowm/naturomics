@@ -2,15 +2,18 @@
   <div class="comment-block">
     <p class="block-title">Lastest Comments</p>
     <div class="block-border">
-      <div class="comment-row" v-for="cItem in comments" :key="cItem.cName">
-        <span class="c-name">{{ cItem.cName }}: </span>
-        <span class="c-content">{{ cItem.cComment }}</span>
-      </div>
+      <comment-item
+        v-for="cItem in comments"
+        :key="cItem.cName"
+        :data="cItem"
+      ></comment-item>
     </div>
   </div>
 </template>
 
 <script>
+import commentItem from '@/components/comment-item.vue'
+
 export default {
   name: 'comment-block',
   created () {
@@ -28,6 +31,9 @@ export default {
     return {
       comments: []
     }
+  },
+  components: {
+    commentItem
   }
 }
 </script>
