@@ -27,8 +27,8 @@
     <p class="block-title">Search</p>
     <div class="search-wrap">
       <i class="fa fa-search fa-lg" aria-hidden="true"></i>
-      <input type="text" placeholder="search...">
-      <div class="s-btn">Search</div>
+      <input type="text" placeholder="search..." v-model="searchKey">
+      <div class="s-btn" @click="searchArticle">Search</div>
     </div>
     <!-- tags -->
     <p class="block-title">Tags</p>
@@ -53,10 +53,14 @@
               this.$set(this.profile, k, data.data[k])
             }
           })
+      },
+      searchArticle () {
+        this.$http.get('/api/v2/article/query', {params: {title: this.searchKey}})
       }
     },
     data () {
       return {
+        searchKey: '',
         profile: {}
       }
     }
