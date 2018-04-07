@@ -8,12 +8,18 @@
       </div>
       <!-- 用户简介 -->
       <div class="profile-content">
-        <p class="p-name">{{ profile.pName }}</p>
-        <p class="p-bios">{{ profile.pBios }}</p>
+        <p class="p-name">{{ profile.nick_name }}</p>
+        <p class="p-bios">{{ profile.bio }}</p>
         <div class="contact">
-          <i class="fa fa-github fa-lg" aria-hidden="true"></i>
-          <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
-          <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+          <a :href="profile.github">
+            <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+          </a>
+          <a :href="profile.weibo">
+            <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
+          </a>
+          <a :href="profile.email">
+            <i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -27,7 +33,7 @@
     <!-- tags -->
     <p class="block-title">Tags</p>
     <div class="tags-block">
-      <span v-for="tag in tags" :key="tag">{{ tag }}</span>
+      <span v-for="tag in profile.tags" :key="tag">{{ tag }}</span>
     </div>
   </div>
 </template>
@@ -40,22 +46,17 @@
     },
     methods: {
       fetchData () {
-        this.$http.get('/api/tags')
+        this.$http.get('/api/v2/user/profile')
           .then(({data}) => {
-            this.tags = data
-          })
-        this.$http.get('/api/profile')
-          .then(({data}) => {
-            for (const k in data) {
+            for (const k in data.data) {
               // $set是vue实例都有的方法，用于赋值
-              this.$set(this.profile, k, data[k])
+              this.$set(this.profile, k, data.data[k])
             }
           })
       }
     },
     data () {
       return {
-        tags: [],
         profile: {}
       }
     }
@@ -110,7 +111,9 @@
           margin 20px 0
           i {
             margin 0 7px
-            &:hover {
+            color dark_grey
+            &:link, &:visited, &:hover, &:active {
+              color steel_blue
               cursor pointer
             }
           }

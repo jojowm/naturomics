@@ -1,6 +1,6 @@
 <template>
   <div class="p-header">
-    <!-- <el-button round class="sign-btn" @click="dialogVisible = true">登陆</el-button>
+    <el-button round class="sign-btn" @click="dialogVisible = true">登陆</el-button>
     <el-dialog
       title="登陆"
       :visible.sync="dialogVisible"
@@ -18,7 +18,7 @@
         <el-button @click="dialogVisible =  false">取消</el-button>
         <el-button type="primary" @click="submit">确认</el-button>
       </span>
-    </el-dialog> -->
+    </el-dialog>
     <router-link to="/article_create">
       <el-button
         round
@@ -33,36 +33,36 @@
     name: 'p-header',
     data () {
       return {
-        // dialogVisible: false,
-        // userForm: {
-        //   username: '',
-        //   password: ''
-        // },
-        // rules: {
-        //   username: [
-        //     { required: true, message: '请输入用户名', trigger: 'blur' },
-        //     { min: 3, max: 10, message: '长度在3到10个字符', trigger: 'blur' }
-        //   ],
-        //   password: [
-        //     { required: true, message: '请输入密码', trigger: 'blur' },
-        //     { min: 5, message: '长度最少5个字符', trigger: 'blur' }
-        //   ]
-        // }
+        dialogVisible: false,
+        userForm: {
+          username: '',
+          password: ''
+        },
+        rules: {
+          username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' },
+            { min: 3, max: 10, message: '长度在3到10个字符', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { min: 5, message: '长度最少5个字符', trigger: 'blur' }
+          ]
+        }
       }
     },
     methods: {
-      // submit () {
-      //   this.dialogVisible = false
-      //   this.$refs.userForm.validate((valid) => {
-      //     if (valid) {
-      //       this.$http.post(`/api/v2/user/sign_in`, this.userForm)
-      //       // alert('已提交!')
-      //     } else {
-      //       console.log('error submit')
-      //       return false
-      //     }
-      //   })
-      // }
+      submit () {
+        this.dialogVisible = false
+        this.$refs.userForm.validate((valid) => {
+          if (valid) {
+            this.$http.post(`/api/v2/user/sign_in`, this.userForm)
+            // alert('已提交!')
+          } else {
+            console.log('error submit')
+            return false
+          }
+        })
+      }
     }
   }
 </script>
@@ -75,14 +75,14 @@
     width 100%
     height 50px
     background skyBlue
-    // .sign-btn {
-    //   position absolute
-    //   top 5px
-    //   left 50px
-    //   &:hover {
-    //     pointer cursor
-    //   }
-    // }
+    .sign-btn {
+      position absolute
+      top 5px
+      left 50px
+      &:hover {
+        pointer cursor
+      }
+    }
     .new-article {
       position absolute
       top 5px
