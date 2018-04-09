@@ -56,6 +56,16 @@
       },
       searchArticle () {
         this.$http.get('/api/v2/article/query', {params: {title: this.searchKey}})
+          .then(({data}) => {
+            if (data.status) {
+              this.$router.push({path: '/search_result'})
+            } else {
+              this.$message({
+                type: 'error',
+                message: '没有找到相关文章'
+              })
+            }
+          })
       }
     },
     data () {
