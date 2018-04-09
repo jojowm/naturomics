@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import article from '@/components/article'
 import newArticle from '@/components/new-article'
+import searchResult from '@/components/search-result'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/article_edit/:id',
       name: 'edit-article',
       component: newArticle
+    },
+    {
+      path: '/search_result',
+      name: 'search-result',
+      component: searchResult
     }
   ]
 })
