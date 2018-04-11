@@ -39,12 +39,17 @@
 </template>
 
 <script>
+  // import bus from '../assets/eventHub'
+  import { mapMutations } from 'vuex'
   export default {
     name: 'sidebar',
     created () {
       this.fetchData()
     },
     methods: {
+      ...mapMutations([
+        'setQueryLists'
+      ]),
       fetchData () {
         this.$http.get('/api/v2/user/profile')
           .then(({data}) => {
@@ -58,7 +63,9 @@
         this.$http.get('/api/v2/article/query', {params: {title: this.searchKey}})
           .then(({data}) => {
             if (data.status) {
-              this.$router.push({path: '/search_result'})
+              this.setQueryLists(data.data)
+              // bus.$emit('update-query-list', data.data)
+              this.$router.push({name: 'search-result'})
             } else {
               this.$message({
                 type: 'error',
