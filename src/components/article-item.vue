@@ -23,3 +23,22 @@ export default {
   props: ['data']
 }
 </script>
+
+<style lang="stylus">
+.article-row {
+  &:hover {
+    a {
+      color #ccc
+      cursor pointer
+    }
+  }
+  a {
+    text-decoration none
+    color #000
+    &:link, &visited, &:active {
+      cursor pointer
+      color #000
+    }
+  }
+}
+</style>
