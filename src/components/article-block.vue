@@ -34,12 +34,12 @@ export default {
     lastPage () {
       if (this.count > 1) {
         this.count--
-        this.start = this.start - 10
+        this.start = this.start - 20
       }
     },
     nextPage () {
       if (this.count < this.totalPages) {
-        this.start = this.count * 10
+        this.start = this.count * 20
         this.count++
       }
     }
@@ -47,10 +47,10 @@ export default {
   computed: {
     articles () {
       let tmp = JSON.parse(JSON.stringify(this.article))
-      return tmp.slice(this.start, this.count * 10)
+      return tmp.slice(this.start, this.count * 20)
     },
     totalPages () {
-      return Math.ceil(this.article.length / 10)
+      return Math.ceil(this.article.length / 20)
     }
     // currentPage () {
     //   return

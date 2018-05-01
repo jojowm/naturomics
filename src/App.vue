@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <p-header></p-header>
-    <router-view
-    />
-    <p-footer></p-footer>
-  </div>
+      <p-header></p-header>
+      <router-view
+      />
+      <p-footer></p-footer>
+    </div>
 </template>
 
 <script>
@@ -33,6 +33,8 @@ export default {
 
 <style lang="stylus">
   #app {
+    height 100%
+    position relative
     display flex
     flex-direction column
   }
