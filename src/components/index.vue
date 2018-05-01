@@ -2,10 +2,10 @@
   <div class="container">
     <div class="wid-70">
       <article-block></article-block>
-      <div class="interaction-block">
+      <!-- <div class="interaction-block">
         <fan-block></fan-block>
         <comment-block></comment-block>
-      </div>
+      </div> -->
     </div>
     <sidebar></sidebar>
   </div>
@@ -14,14 +14,17 @@
 <script>
   import sidebar from '@/components/sidebar'
   import articleBlock from '@/components/article-block'
-  import fanBlock from '@/components/fan-block'
-  import commentBlock from '@/components/comment-block'
+  // import fanBlock from '@/components/fan-block'
+  // import commentBlock from '@/components/comment-block'
 
   export default {
     name: 'index',
     components: {
-      sidebar, articleBlock, fanBlock, commentBlock
+      sidebar, articleBlock
     }
+    // components: {
+    //   sidebar, articleBlock, fanBlock, commentBlock
+    // }
   }
 </script>
 
@@ -36,11 +39,10 @@
     margin 0 auto
     .wid-70 {
       width 70%
-      // border 1px solid light_grey
-      .interaction-block {
-        display flex
-        justify-content space-between
-      }
+      // .interaction-block {
+      //   display flex
+      //   justify-content space-between
+      // }
     }
   }
 </style>
